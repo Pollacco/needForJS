@@ -20,7 +20,7 @@ const settings = {
     start: false,
     speed: 3,
     score: 0,
-    traffic: 3
+    traffic: 4
 };
 
 function getQuantityElements(heigthElement) {
@@ -42,7 +42,9 @@ function startGame(){
         const enemy = document.createElement('div');
         enemy.classList.add('enemy');
         enemy.y = -100 * settings.traffic * (i + 1);
+        enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth-50)) + 'px';
         enemy.style.top = enemy.y + 'px';
+        enemy.style.background = 'transparent url(./image/enemy2.png) center / cover no-repeat';
         gameArea.appendChild(enemy);
     }
 
@@ -102,7 +104,8 @@ function moveEnemy() {
         item.y += settings.speed / 2;
         item.style.top = item.y + 'px';
         if (item.y >= document.documentElement.clientHeight) {
-            item.y = -100;
+            item.y = -100 * settings.traffic;
+            item.style.left = Math.floor(Math.random() * (gameArea.offsetWidth-50)) + 'px';
         }
     });
     
